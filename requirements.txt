@@ -1,0 +1,11 @@
+opencv-python
+torch
+torchvision
+tensorboard_logger
+tensorflow
+tqdm
+numpy
+pandas
+pycocotools
+timm
+streamlit
