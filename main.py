@@ -4,6 +4,14 @@ import os
 from utils import show_bbox
 from model import CoinExtractor, CoinClassifier
 from PIL import Image
+import subprocess
+
+subprocess.run(['git', 'lfs', 'pull'], check=True)
+
+
+
+
+
 
 coin_extractor = CoinExtractor('models/fasterRCNN_coin_detector.pth')
 classifier = CoinClassifier(model_path='models/FastViT_coin_classifier.pth',class_names_path='data/class_names.txt')
