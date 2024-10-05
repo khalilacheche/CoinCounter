@@ -5,14 +5,34 @@ from utils import show_bbox
 from model import CoinExtractor, CoinClassifier
 from PIL import Image
 import subprocess
+import gdown
 
 subprocess.run(['git', 'lfs', 'pull'], check=True)
 
 
 
+model_files = [{"filed_id": "1cJ5hMdr5xGLRwgeujjbTni-66_n6ZDCl", "model_path": "models/fasterRCNN_coin_detector.pth"},
+               {"filed_id": "1n6Gf3wAIfgPh78l9Ln0VSdTzFsAhLR33", "model_path": "models/FastViT_coin_classifier.pth"}]
 
 
+def download_model_from_gdrive(file_id, model_path):
+    # Google Drive file ID from the shareable link
+    download_url = f"https://drive.google.com/uc?id={file_id}"
 
+    if not os.path.exists(model_path):
+        gdown.download(download_url, model_path, quiet=False)
+    else:
+        pass
+        #st.write("Model weights already downloaded.")
+
+progress_bar = st.progress(0)  # Initialize the progress bar
+for model in  model_files:
+    download_model_from_gdrive(model["filed_id"], model["model_path"])
+    progress_bar.progress(50)
+progress_bar.progress(100)
+# remove the progress bar
+del progress_bar
+    
 coin_extractor = CoinExtractor('models/fasterRCNN_coin_detector.pth')
 classifier = CoinClassifier(model_path='models/FastViT_coin_classifier.pth',class_names_path='data/class_names.txt')
 
