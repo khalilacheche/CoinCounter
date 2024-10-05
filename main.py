@@ -7,8 +7,6 @@ from PIL import Image
 import subprocess
 import gdown
 
-subprocess.run(['git', 'lfs', 'pull'], check=True)
-
 
 
 model_files = [{"filed_id": "1cJ5hMdr5xGLRwgeujjbTni-66_n6ZDCl", "model_path": "models/fasterRCNN_coin_detector.pth"},
